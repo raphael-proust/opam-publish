@@ -200,6 +200,7 @@ let get_metas force tmpdir dirs opams urls repos tag names version =
       | { archive = Some a; checksum = None; _ } as m ->
         let checksum = [
           OpamHash.compute ~kind:`MD5 (OpamFilename.to_string a);
+          OpamHash.compute ~kind:`SHA256 (OpamFilename.to_string a);
           OpamHash.compute ~kind:`SHA512 (OpamFilename.to_string a);
         ] in
         Some [{ m with checksum = Some checksum }]
